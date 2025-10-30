@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us — The College Compass</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #232526 40%, #3a6186 100%);
+      font-family: 'Segoe UI', Arial, sans-serif;
+      color: #ececec;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background: #212121;
+      text-align: center;
+      padding: 28px 0;
+      box-shadow: 0 4px 18px 2px rgba(0,0,0,0.3);
+    }
+    h1 {
+      color: #ffaa3c;
+    }
+    .contact-container {
+      background: rgba(30, 32, 43, 0.97);
+      border-radius: 14px;
+      box-shadow: 0 2px 18px rgba(60,200,250,0.07);
+      padding: 30px;
+      max-width: 600px;
+      margin: 50px auto;
+    }
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #58c6fa;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 18px;
+      border: 2px solid #28c7fa;
+      border-radius: 8px;
+      background: #1c1f29;
+      color: #fff;
+      font-size: 1em;
+    }
+    button {
+      background: #28c7fa;
+      color: #1b2330;
+      border: none;
+      padding: 14px 28px;
+      font-size: 1.1em;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #1b2330;
+      color: #28c7fa;
+      border: 2px solid #28c7fa;
+    }
+    footer {
+      background: #212131;
+      color: #ffa51c;
+      text-align: center;
+      padding: 22px 5vw 14px 5vw;
+      font-size: 1.05em;
+      border-top: 2px solid #223;
+      margin-top: 60px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Contact Us</h1>
+    <p>We'd love to hear from you — reach out anytime!</p>
+  </header>
+
+  <div class="contact-container">
+    <form action="mailto:Karthik28565@gmail.com" method="post" enctype="text/plain">
+      <label for="name">Your Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+      <label for="email">Your Email</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+      <label for="message">Your Message</label>
+      <textarea id="message" name="message" rows="6" placeholder="Write your message here..." required></textarea>
+
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
+
+  <footer>
+    <p>© 2025 The College Compass | Designed for St. Joseph's College of Engineering</p>
+  </footer>
+</body>
+</html>
