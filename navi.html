@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Navigator | College Compass</title>
+  <title>College Compass</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.css" />
@@ -19,34 +19,85 @@
     header {
       background-color: #161b22;
       padding: 20px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      text-align: center;
     }
 
     header h1 {
       margin: 0;
-      font-size: 1.8em;
+      font-size: 2em;
       color: #58a6ff;
-    }
-
-    nav a {
-      color: #58a6ff;
-      text-decoration: none;
-      margin-left: 20px;
-      font-weight: 600;
-    }
-
-    nav a:hover {
-      color: #1f6feb;
     }
 
     #map {
       height: 550px;
-      margin: 40px auto;
+      margin: 20px auto;
       max-width: 90%;
       border-radius: 10px;
       border: 2px solid #21262d;
+    }
+
+    .controls {
+      text-align: center;
+      margin-top: 15px;
+      position: relative;
+    }
+
+    input {
+      width: 60%;
+      padding: 12px;
+      border-radius: 6px;
+      border: none;
+      font-size: 1em;
+      background-color: #21262d;
+      color: #e6edf3;
+      outline: none;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 6px;
+      font-weight: 600;
+      background-color: #238636;
+      color: white;
+      cursor: pointer;
+      margin-left: 8px;
+    }
+
+    button:hover {
+      background-color: #2ea043;
+    }
+
+    .suggestions {
+      position: absolute;
+      width: 60%;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: #161b22;
+      border: 1px solid #21262d;
+      border-radius: 6px;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 1000;
+      text-align: left;
+    }
+
+    .suggestions div {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #21262d;
+    }
+
+    .suggestions div:hover {
+      background-color: #1f6feb;
+      color: white;
+    }
+
+    .note {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 1em;
+      color: #c9d1d9;
     }
 
     footer {
@@ -55,20 +106,42 @@
       padding: 20px;
       color: #8b949e;
       font-size: 0.9em;
-      margin-top: 60px;
+      margin-top: 40px;
+    }
+
+    /* ✅ Darker font and styling for navigation instructions */
+    .leaflet-routing-container {
+      background-color: #ffffffee !important; /* light background */
+      color: #000 !important; /* dark text */
+      font-family: 'Poppins', sans-serif !important;
+      font-size: 15px !important;
+      font-weight: 700 !important; /* bolder text */
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .leaflet-routing-alt table,
+    .leaflet-routing-alt td,
+    .leaflet-routing-alt h2,
+    .leaflet-routing-alt h3 {
+      color: #000 !important;
+      font-weight: 700 !important;
     }
   </style>
 </head>
 <body>
 
   <header>
-    <h1>Campus Navigator</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="navigator.html">Navigator</a>
-      <a href="#">Contact</a>
-    </nav>
+    <h1>College Compass</h1>
   </header>
+
+  <p class="note">📍 Allow location access to start navigation from your current position.</p>
+
+  <div class="controls">
+    <input type="text" id="searchBox" placeholder="Search a campus location (e.g. Library, Chapel, Girls Hostel)" oninput="showSuggestions(this.value)">
+    <button onclick="searchDestination()">Go</button>
+    <div id="suggestions" class="suggestions"></div>
+  </div>
 
   <div id="map"></div>
 
@@ -81,9 +154,13 @@
 
   <script>
     const map = L.map("map").setView([12.869, 80.216], 17);
+    let userCoords = null;
+    let routingControl = null;
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution: "© OpenStreetMap contributors"
+    // 🛰️ Satellite Map Layer
+    L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+      attribution: "Tiles © Esri — Source: Esri, Maxar, Earthstar Geographics",
+      maxZoom: 20
     }).addTo(map);
 
     const locations = {
@@ -115,24 +192,67 @@
     };
 
     Object.entries(locations).forEach(([name, coords]) => {
-      L.marker(coords).addTo(map).bindPopup(`<b>${name}</b>`).openPopup();
+      L.marker(coords).addTo(map).bindPopup(`<b>${name}</b>`);
     });
 
-    // Example route: Admin Office → Library
-    L.Routing.control({
-      waypoints: [
-        L.latLng(locations["ADMINISTRATION OFFICE ENTRANCE"]),
-        L.latLng(locations["LIBRARY"])
-      ],
-      routeWhileDragging: false,
-      show: false,
-      addWaypoints: false,
-      lineOptions: {
-        styles: [{ color: '#58a6ff', weight: 5 }]
-      }
-    }).addTo(map);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          userCoords = [pos.coords.latitude, pos.coords.longitude];
+          L.marker(userCoords, {
+            icon: L.icon({
+              iconUrl: "https://cdn-icons-png.flaticon.com/512/64/64113.png",
+              iconSize: [35, 35]
+            })
+          }).addTo(map).bindPopup("<b>You are here</b>").openPopup();
+          map.setView(userCoords, 17);
+        },
+        () => alert("⚠️ Unable to get your location. Please enable GPS.")
+      );
+    }
+
+    function showSuggestions(value) {
+      const suggestionsDiv = document.getElementById("suggestions");
+      suggestionsDiv.innerHTML = "";
+      if (!value) return;
+      const matches = Object.keys(locations).filter(loc =>
+        loc.toLowerCase().includes(value.toLowerCase())
+      );
+      matches.forEach(match => {
+        const div = document.createElement("div");
+        div.textContent = match;
+        div.onclick = () => {
+          document.getElementById("searchBox").value = match;
+          suggestionsDiv.innerHTML = "";
+          searchDestination();
+        };
+        suggestionsDiv.appendChild(div);
+      });
+    }
+
+    function searchDestination() {
+      const input = document.getElementById("searchBox").value.trim().toUpperCase();
+      document.getElementById("suggestions").innerHTML = "";
+      if (!input) return alert("Please enter a place name.");
+      if (!userCoords) return alert("Waiting for your location. Try again soon.");
+
+      const destination = locations[input];
+      if (!destination) return alert("❌ Place not found. Check the name or try another location.");
+
+      if (routingControl) map.removeControl(routingControl);
+
+      routingControl = L.Routing.control({
+        waypoints: [L.latLng(userCoords), L.latLng(destination)],
+        routeWhileDragging: false,
+        addWaypoints: false,
+        draggableWaypoints: false,
+        lineOptions: { styles: [{ color: "#58a6ff", weight: 5 }] }
+      }).addTo(map);
+
+      map.fitBounds([userCoords, destination]);
+    }
   </script>
 
 </body>
 </html>
-\
+
