@@ -10,22 +10,6 @@
             margin: 0;
             color: #ececec;
         }
-        .top-logo-bar {
-            background: #191d24;
-            text-align: center;
-            padding: 22px 0 16px 0;
-            box-shadow: 0 2px 8px rgba(40,200,250,0.09);
-        }
-        .top-logo-bar img {
-            width: 420px;
-            height: auto;
-            max-width: 97vw;
-            object-fit: contain;
-            border-radius: 16px;
-            border: 3px solid #28c7fa;
-            background: #fff;
-            box-shadow: 0 8px 36px rgba(50,50,200,0.11);
-        }
         header {
             background: #212121;
             padding: 28px 0 8px 0;
@@ -161,13 +145,6 @@
             border-top: 2px solid #223;
             margin-top: 40px;
         }
-        .footer-silver {
-            font-weight: bold;
-            color: #c0c0c0;
-            font-size: 1.32em;
-            letter-spacing: 1.5px;
-            margin-bottom: 4px;
-        }
         .contact-list {
             color: #ecf3ff;
             font-size: 1.08em;
@@ -185,18 +162,11 @@
             .map-section iframe, .video-section iframe { width: 98vw; }
             footer { font-size: 1em; }
             .about-entrance-img { width: 98vw; height: 180px; max-width: 98vw; }
-            .top-logo-bar img { width: 99vw; max-width: 99vw; }
         }
     </style>
 </head>
+
 <body>
-    <!-- Large Rectangular College Compass logo bar at top -->
-    <div class="top-logo-bar">
-        <a href="https://ibb.co/cS3VcLSV" target="_blank">
-            <img src="https://i.ibb.co/MxSQD6xQ/Whats-App-Image-2025-10-30-at-08-58-50-6eecbef9.jpg"
-            alt="The College Compass Rectangular Logo">
-        </a>
-    </div>
     <header>
         <div class="header-logo-wrap">
             <div class="logo-box">
@@ -210,12 +180,15 @@
         </div>
         <p style="margin-top: 2px; color: #ececec;">Explore St. Joseph's College of Engineering, OMR, Chennai</p>
     </header>
+
+    <!-- ✅ Updated Navigation -->
     <nav>
         <button onclick="window.location.href='navi.html'">Smart Navigator</button>
         <button onclick="window.open('https://stjosephs.ac.in/pages/Infrastructures.html', '_blank')">College Infrastructure</button>
         <button onclick="window.location.href='contact.html'">Contact Us</button>
         <button onclick="window.open('https://www.google.com/maps?q=St+Joseph\'s+College+of+Engineering,+OMR,+Chennai&output=embed&basemap=satellite', '_blank')">Map</button>
     </nav>
+
     <div class="content-section">
         <img class="about-entrance-img" src="https://i.ibb.co/xS5FLVnq/entrance.jpg" alt="St Joseph's College Entrance">
         <h2>About the College</h2>
@@ -250,6 +223,7 @@
             <li><b>Discipline:</b> Promotion of human values, gender equity, cultural traditions, and responsible citizenship.</li>
         </ul>
     </div>
+
     <div class="map-section">
         <iframe
             src="https://www.google.com/maps?q=St+Joseph's+College+of+Engineering,+OMR,+Chennai&output=embed&basemap=satellite"
@@ -260,6 +234,7 @@
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
+
     <div class="video-section">
         <h2 style="text-align:center; color:#ffaa3c;">College Tour Video</h2>
         <div class="sp-embed-player" data-id="cT6UDtnF1Rg">
@@ -267,8 +242,9 @@
             <iframe width="100%" height="100%" style="border:0;" scrolling="no" src="https://go.screenpal.com/player/cT6UDtnF1Rg?width=100%&height=100%&ff=1&title=0" allowfullscreen="true"></iframe>
         </div>
     </div>
+
     <footer>
-        <div class="footer-silver">The College Compass</div>
+        <div class="site-title">The College Compass</div>
         <div class="site-address">
             Old Mahabalipuram Road, Kamaraj Nagar, Semmancheri, Chennai, Tamil Nadu 600119
         </div>
@@ -283,4 +259,3 @@
     </footer>
 </body>
 </html>
-
