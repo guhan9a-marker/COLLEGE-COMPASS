@@ -1,1 +1,261 @@
-# COLLEGE-COMPASS
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The College Compass</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #232526 40%, #3a6186 100%);
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            color: #ececec;
+        }
+        header {
+            background: #212121;
+            padding: 28px 0 8px 0;
+            text-align: center;
+            box-shadow: 0 4px 18px 2px rgba(0,0,0,0.3);
+        }
+        .header-logo-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 32px;
+        }
+        .logo-box {
+            background: #fff;
+            border-radius: 50%;
+            border: 2px solid #28c7fa;
+            box-shadow: 0 2px 8px rgba(50,50,200,0.1);
+            width: 98px;
+            height: 98px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .logo-box img {
+            width: 88px;
+            height: 88px;
+            object-fit: contain;
+            border-radius: 50%;
+        }
+        .header-titlebox {
+            text-align: left;
+        }
+        .college-title {
+            font-size: 2.2em;
+            font-weight: bold;
+            color: #ececec;
+            letter-spacing: 1px;
+        }
+        .college-status {
+            color: #aacdee;
+            font-size: 1.25em;
+            margin-top: 3px;
+            font-style: italic;
+        }
+        .college-code {
+            color: #ffaa3c;
+            font-size: 1.12em;
+            margin-top: 2px;
+            font-weight: 700;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 22px;
+            margin: 28px 0 36px 0;
+        }
+        nav button {
+            background: #222b3a;
+            border: 2px solid #28c7fa;
+            color: #28c7fa;
+            font-size: 1.13em;
+            padding: 13px 28px;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 2px 8px rgba(50,50,200,0.10);
+            font-weight: 600;
+            transition: background 0.3s, color 0.3s, transform 0.2s;
+        }
+        nav button:hover {
+            background: #28c7fa;
+            color: #1b2330;
+            transform: scale(1.07);
+        }
+        .content-section {
+            background: rgba(30, 32, 43, 0.97);
+            border-radius: 14px;
+            box-shadow: 0 2px 18px rgba(60,200,250,0.07);
+            padding: 26px 24px;
+            margin: 26px auto;
+            max-width: 800px;
+        }
+        .about-entrance-img {
+            display: block;
+            margin: 18px auto 32px auto;
+            max-width: 96%;
+            width: 700px;
+            height: 320px;
+            object-fit: cover;
+            border-radius: 24px;
+            border: 3px solid #28c7fa;
+            box-shadow: 0 4px 32px rgba(40,200,250,0.12);
+        }
+        .map-section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 36px auto;
+            width: 100vw;
+        }
+        .map-section iframe {
+            margin: auto;
+            display: block;
+        }
+        h1, h2 {
+            color: #ffaa3c;
+        }
+        ul {
+            color: #d7e1ed;
+        }
+        a {
+            color: #58c6fa;
+            text-decoration: underline;
+        }
+        a:hover {
+            color: #ffa51c;
+        }
+        .video-section {
+            margin: 44px auto;
+            max-width: 800px;
+            border-radius: 14px;
+            box-shadow: 0 2px 18px rgba(60,200,250,0.07);
+            background: rgba(30,32,43,0.97);
+            padding: 18px;
+        }
+        footer {
+            background: #212131;
+            color: #ffa51c;
+            text-align: center;
+            padding: 22px 5vw 14px 5vw;
+            font-size: 1.18em;
+            border-top: 2px solid #223;
+            margin-top: 40px;
+        }
+        .contact-list {
+            color: #ecf3ff;
+            font-size: 1.08em;
+            margin: 12px auto 0 auto;
+            display: inline-block;
+            text-align: left;
+        }
+        @media (max-width: 950px) {
+            .header-logo-wrap { flex-direction: column; gap: 12px;}
+            .header-titlebox { text-align: center; }
+        }
+        @media (max-width: 850px) {
+            .content-section, .map-section, .video-section { margin: 16px 2vw; }
+            nav { flex-direction: column; gap: 18px; }
+            .map-section iframe, .video-section iframe { width: 98vw; }
+            footer { font-size: 1em; }
+            .about-entrance-img { width: 98vw; height: 180px; max-width: 98vw; }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="header-logo-wrap">
+            <div class="logo-box">
+                <img src="https://i.ibb.co/FkhLqCRz/1838-logo.jpg" alt="St Joseph's College Logo">
+            </div>
+            <div class="header-titlebox">
+                <div class="college-title">St. Joseph's College of Engineering</div>
+                <div class="college-status">(An Autonomous Institution)</div>
+                <div class="college-code">Counseling Code: 1317</div>
+            </div>
+        </div>
+        <p style="margin-top: 2px; color: #ececec;">Explore St. Joseph's College of Engineering, OMR, Chennai</p>
+    </header>
+
+    <!-- ✅ Updated Navigation -->
+    <nav>
+        <button onclick="window.location.href='navi.html'">Smart Navigator</button>
+        <button onclick="window.open('https://stjosephs.ac.in/pages/Infrastructures.html', '_blank')">College Infrastructure</button>
+        <button onclick="window.location.href='contact.html'">Contact Us</button>
+        <button onclick="window.open('https://www.google.com/maps?q=St+Joseph\'s+College+of+Engineering,+OMR,+Chennai&output=embed&basemap=satellite', '_blank')">Map</button>
+    </nav>
+
+    <div class="content-section">
+        <img class="about-entrance-img" src="https://i.ibb.co/xS5FLVnq/entrance.jpg" alt="St Joseph's College Entrance">
+        <h2>About the College</h2>
+        <p>
+            St. Joseph’s College of Engineering, with 29 years of academic distinction, offers 11 UG and 7 PG programs taking in more than 1,570 students per year. The college is well-known for its outstanding ranking records, producing over 1,541 university ranks and multiple gold and silver medals. It has held first place for student ranks among over 500 institutions under Anna University three times.
+        </p>
+        <ul>
+            <li>Ranked in the Top 10 for Anna University ranks, first place achieved in three different years.</li>
+            <li>Nationally ranked under NIRF since 2017 and ARIIA ‘Elite Band’ for innovation in 2021.</li>
+            <li>Accredited A+ by NAAC (3.46/4.0 rating).</li>
+            <li>‘Autonomous Status’ under Anna University since 2020 for most UG programs.</li>
+            <li>Many departments recognized as Anna University Research Centres, with ongoing Ph.D. and MS scholars.</li>
+            <li>Strong focus on research, multiple funded research projects, and a high h-index in national and international journals.</li>
+            <li>Multiple national awards (AICTE, ARIIA, MHRD) for innovation, women empowerment, and employability excellence.</li>
+        </ul>
+        <h3>Vision</h3>
+        <p>
+            To become a world-class educational center for engineering, technology, computer applications, and management, fostering high moral and professional standards to benefit the wider community.
+        </p>
+        <h3>Mission</h3>
+        <ul>
+            <li>Achieve academic excellence across all disciplines.</li>
+            <li>Inculcate strong moral and professional values.</li>
+            <li>Develop students’ overall personality.</li>
+            <li>Strengthen industry-institute collaboration and ensure high campus placement rates.</li>
+        </ul>
+        <h3>Core Values</h3>
+        <ul>
+            <li><b>Reverence:</b> Inclusive and caring environment valuing diversity of the staff and student community.</li>
+            <li><b>Excellence:</b> Commitment to academic quality and innovative learning.</li>
+            <li><b>Liability:</b> Transparent administration, accountability, and ongoing evaluation of institutional practices.</li>
+            <li><b>Discipline:</b> Promotion of human values, gender equity, cultural traditions, and responsible citizenship.</li>
+        </ul>
+    </div>
+
+    <div class="map-section">
+        <iframe
+            src="https://www.google.com/maps?q=St+Joseph's+College+of+Engineering,+OMR,+Chennai&output=embed&basemap=satellite"
+            width="700"
+            height="340"
+            style="border:2px solid #37c7fa; border-radius:12px;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+
+    <div class="video-section">
+        <h2 style="text-align:center; color:#ffaa3c;">College Tour Video</h2>
+        <div class="sp-embed-player" data-id="cT6UDtnF1Rg">
+            <script src="https://go.screenpal.com/player/appearance/cT6UDtnF1Rg"></script>
+            <iframe width="100%" height="100%" style="border:0;" scrolling="no" src="https://go.screenpal.com/player/cT6UDtnF1Rg?width=100%&height=100%&ff=1&title=0" allowfullscreen="true"></iframe>
+        </div>
+    </div>
+
+    <footer>
+        <div class="site-title">The College Compass</div>
+        <div class="site-address">
+            Old Mahabalipuram Road, Kamaraj Nagar, Semmancheri, Chennai, Tamil Nadu 600119
+        </div>
+        <b>Contact Information</b>
+        <div class="contact-list">
+            <ul>
+                <li><b>Email:</b> <a href="mailto:jprstjosephs@stjosephs.ac.in">jprstjosephs@stjosephs.ac.in</a></li>
+                <li><b>Phone:</b> 044 - 24501060, 24501449</li>
+                <li><b>Office Address:</b> Old Mahabalipuram Road, Kamaraj Nagar, Semmancheri, Chennai, Tamil Nadu 600119</li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>
